@@ -1,0 +1,11 @@
+// 获取服务地址
+		System.out.println(HttpClientUtil.sendHttpPostRequest(
+				"http://localhost:8080/yim-consumer/yim/server/get",
+				paramMap));
+//发送消息
+paramMap.put("uid", "1");
+		paramMap.put("message", "hello你妹呀你能收到吗");
+		// 发送信息
+		System.out.println(HttpClientUtil.sendHttpPostRequest(
+				"http://localhost:8080/yim-consumer/yim/msg/send",
+				paramMap));

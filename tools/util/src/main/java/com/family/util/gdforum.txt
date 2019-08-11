@@ -1,0 +1,14 @@
+// //查询话题列表
+		paramMap.put("lastId", "0");
+		System.out.println(HttpClientUtil.sendHttpPostRequest(
+				"http://localhost:8080/forum-consumer/topic/list",
+				paramMap));
+// //回复点赞
+		paramMap.put("replyId", "17");
+		System.out.println(HttpClientUtil.sendHttpPostRequest(
+				"http://localhost:8080/forum-consumer/topic/likeReply", paramMap));
+		// //查询话题详细
+		paramMap.put("lastId", "0");
+		paramMap.put("topicId", "3");
+		System.out.println(HttpClientUtil.sendHttpPostRequest(
+				"http://localhost:8080/forum-consumer/topic/detail", paramMap));

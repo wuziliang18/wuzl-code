@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+
+	<bean id="cacheManager" class="com.yoloho.cache.memcache.support.MemcacheCacheManager">
+		<property name="memcachedClient" ref="memcachedClient" />
+		<!-- 配置缓存时间 -->
+		<property name="configMap">
+			<map>
+				<entry key="defaultExpire" value="3600" /><!-- key缓存对象名称 value缓存过期时间 -->
+			</map>
+		</property>
+	</bean>
+	<bean id="classCacheAop" class="com.yoloho.cache.memcache.support.ClassCacheAop" />
+</beans>

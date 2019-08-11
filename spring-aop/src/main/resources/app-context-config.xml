@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+	
+	
+	<bean id="classCacheAop" class="org.family.learn.spring_aop.aop.ClassCacheConfigAop" />
+	<bean class="org.family.learn.spring_aop.service.UserServiceImpl"/>
+	
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* org.family.learn.spring_aop.service.*.*(..))"
+			id="servicePointcut" />
+		<aop:aspect id="classCachAspect" ref="classCacheAop"
+			order="2" >
+			<aop:before pointcut-ref="servicePointcut" method="checkCache"  />
+		</aop:aspect>
+	</aop:config>
+</beans>

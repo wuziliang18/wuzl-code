@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+	<context:annotation-config />
+	<bean class="com.wuzl.lean.spring3.commen.util.MyBeanFactoryPostProcessor" />
+	<bean id="boy" class="com.wuzl.lean.spring3.commen.bean.PersonBean">
+		<property name="name">
+			<value>boy</value>
+		</property>
+		<property name="sex">
+			<value>1</value>
+		</property>
+		<property name="age">
+			<value>16</value>
+		</property>
+		<!-- 正常这里是不可以的 但是加入了MyBeanFactoryPostProcessor -->
+		<property name="birthday">
+			<value>19871111</value>
+		</property>
+	</bean>
+</beans>

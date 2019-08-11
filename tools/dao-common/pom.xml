@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.yoloho</groupId>
+  <artifactId>dao-common</artifactId>
+  <version>0.0.3</version>
+  <packaging>pom</packaging>
+
+  <name>dao-common</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+  </dependencies>
+  <modules>
+  	<module>mybatis-common</module>
+    <module>dao-api</module>
+    <module>spring-common</module>
+    <module>cache-memcache</module>
+    <module>datasource</module>
+    <module>datasource-split</module>
+  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+            <source>1.7</source>
+            <target>1.7</target>
+            <fork>true</fork>
+            <compilerVersion>1.7</compilerVersion>
+            <!--<failOnError>false</failOnError> -->
+            <showWarnings>false</showWarnings>
+            <compilerArgument>-nowarn</compilerArgument>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <distributionManagement>
+	<repository>
+		<id>nexus-releases</id>
+		<name>nexus Release Repository</name>
+		<url>http://192.168.123.108:4444/nexus/content/repositories/releases/</url>
+	</repository>
+	<snapshotRepository>
+		<id>nexus-snapshots</id>
+		<name>Nexus Snapshot Repository</name>
+		<url>http://192.168.123.108:4444/nexus/content/repositories/snapshots/</url>
+	</snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>dayima</id>
+      <name>DevNexus</name>
+      <url>http://192.168.123.108:4444/nexus/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+</project>

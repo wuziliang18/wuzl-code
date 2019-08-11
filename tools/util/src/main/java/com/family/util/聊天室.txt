@@ -1,0 +1,25 @@
+// //进入聊天室
+		 paramMap.put("sign", "ef8420e79f7ec9bc154ef301d26ceaf2");
+		 paramMap.put("lastId", "0");
+		paramMap.put("broadcastId", "69");
+		 System.out.println(HttpClientUtil.sendHttpPostRequest(
+				 "http://localhost:8080/live-consumer/broadcast/msg/list",
+				 paramMap));
+		paramMap.put("messageContent", "做12");
+		paramMap.put("messageType", "1");
+//		paramMap.put("repliedMessageId", "12164564");
+		System.out.println(HttpClientUtil.sendHttpPostRequest(
+				"http://localhost:8080/live-consumer/broadcast/info/get",
+				paramMap));
+//		System.out.println(HttpClientUtil.sendHttpPostRequest(
+//				 "http://localhost:8080/live-consumer/broadcast/msg/send",
+//				 paramMap));
+		// System.out.println(HttpClientUtil.sendHttpPostRequest("http://localhost:8080/forum-consumer/group/chat/send",paramMap));
+		// System.out.println(HttpClientUtil.sendHttpPostRequest("http://localhost:8080/forum-consumer/group/chat/msg/refuse",paramMap));
+//		 System.out.println(HttpClientUtil.sendHttpPostRequest("http://localhost:8080/forum-consumer/admin/group/info",paramMap));
+		// paramMap.put("token", "197195003#1eba9704d62ff9ac7cb474b5f8720068");
+		paramMap.put("duration", "222");
+		 Map<String, File> fileParamMap=new HashMap<String, File>();
+		 fileParamMap.put("audio", new
+		 File("/home/wuzl/下载/2014-05-31 08_17_06.amr"));
+		 System.out.println(HttpClientUtil.sendHttpPostRequestHaveFile("http://localhost:8080/live-consumer/broadcast/msg/send",paramMap,fileParamMap));

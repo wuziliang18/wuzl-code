@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.wuzl.lean</groupId>
+		<artifactId>spring</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.wuzl.lean</groupId>
+	<artifactId>spring3</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>spring3</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring_version>3.1.2.RELEASE</spring_version>
+		<asm_version>2.2.3</asm_version>
+		<aspectjweaver_version>1.6.8</aspectjweaver_version>
+		<log4j_version>2.0-rc1</log4j_version>
+		<fastjson_version>1.2.5</fastjson_version>
+	</properties>
+	<modules>
+		<module>spring-data-redis</module>
+    <module>rocketmq</module>
+    <module>spring3-commen</module>
+  </modules>
+</project>
