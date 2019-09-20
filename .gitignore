@@ -1,0 +1,17 @@
+bin/
+target/
+META-INF/
+
+.settings/
+.project
+.classpath
+.mymetadata
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
