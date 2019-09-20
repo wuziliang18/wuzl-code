@@ -31,8 +31,6 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import com.alibaba.fastjson.JSON;
-
 /**
  * 少了异常处理和请求返回值不是200的情况
  * 
@@ -134,7 +132,7 @@ public class PooledHttpClientAdaptor {
 			}
 			return null;
 		} catch (IOException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			if (response != null) {
 				try {

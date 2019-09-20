@@ -1,13 +1,13 @@
-package org.wuzl.test.leetcode;
+package org.wuzl.test.comm;
 
 public class ListNode<T> {
 	T val;
 	ListNode<T> next;
 
-	ListNode() {
+	public ListNode() {
 	}
 
-	ListNode(T x) {
+	public ListNode(T x) {
 		val = x;
 	}
 
