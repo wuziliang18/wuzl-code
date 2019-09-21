@@ -54,7 +54,7 @@ public class TreeNode<T> implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TreeNode [leftNode=" + leftNode + ", rightNode=" + rightNode + ", data=" + data + "]";
+		return "TreeNode [data=" + data + "]";
 	}
 
 }
