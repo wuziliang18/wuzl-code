@@ -1,4 +1,4 @@
-package org.wuzl.test.aataStructure;
+package org.wuzl.test.dataStructure;
 
 import java.util.Arrays;
 
