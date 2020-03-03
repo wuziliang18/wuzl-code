@@ -6,22 +6,24 @@ import java.util.List;
 
 public class TestString {
 	public static void main(String[] args) {
-		String uids="234234,12321,40";
+		String price = "1235";
+		System.out.println(price.substring(0, price.indexOf(".")) + "00");
+		String uids = "234234,12321,40";
 		System.out.println(uids.length());
-		if(uids.endsWith(",")){
-			uids=uids.substring(0,uids.length()-1);
+		if (uids.endsWith(",")) {
+			uids = uids.substring(0, uids.length() - 1);
 		}
-		List<String> rows=new ArrayList<String>();
+		List<String> rows = new ArrayList<String>();
 		rows.add("234234");
 		rows.add("40");
 		rows.add("12321");
-		String[] uidArray=uids.split(",");
-		List<String> lostUidList=new ArrayList<String>(Arrays.asList(uidArray));
+		String[] uidArray = uids.split(",");
+		List<String> lostUidList = new ArrayList<String>(Arrays.asList(uidArray));
 		lostUidList.removeAll(rows);
 		System.out.println(lostUidList);
 		System.out.println(uids);
-		String s="Hello world";
-		System.out.println(s.substring(1,9));
+		String s = "Hello world";
+		System.out.println(s.substring(1, 9));
 //		String s="安慰安慰安慰儿玩命{{<img>}}{{<img>}}<br/><br/><br/><br/><br/>图文混排的链接<a herf=\"www.qq.com\">马化腾</a>";
 //		System.out.println(s.replace("{{<img>}}", ""));
 //		System.out.println("sadf<br/>safsd<br/>11sa<br/>dfas".replace("<br/>", "\r\n"));
