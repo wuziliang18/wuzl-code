@@ -27,7 +27,32 @@ public class MaxSlidingWindow {
         if (k == 1) {
             return nums;
         }
-        return null;
+        Deque<Integer> deque = new ArrayDeque<>(k);
+        int[] result = new int[nums.length - k + 1];
+        for (int i = 0; i < k - 1; i++) {// 初始化队列
+            cleanDeque(deque, nums, i, k);
+            deque.add(i);
+        }
+        int resultIndex = 0;
+        for (int i = k - 1; i < nums.length; i++) {
+            cleanDeque(deque, nums, i, k);
+            deque.add(i);
+            result[resultIndex++] = nums[deque.getFirst()];
+        }
+        return result;
+    }
+
+    private void cleanDeque(Deque<Integer> deque, int[] nums, int index, int k) {
+        if (deque.isEmpty()) {
+            return;
+        }
+        if (deque.getFirst() == index - k - 1) {// 上一步最大的是上个窗口最后值
+            deque.removeFirst();
+        }
+        int newValue = nums[index];
+        while (!deque.isEmpty() && nums[deque.getLast()] <= newValue) {
+            deque.removeFirst();
+        }
     }
 
 }

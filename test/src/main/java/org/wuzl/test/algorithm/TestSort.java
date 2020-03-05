@@ -19,7 +19,7 @@ public class TestSort {
         // outArray(shellSort(baseArray.clone()));
         // List<Integer> list = new ArrayList<>(Arrays.asList(baseArray));
         quickSort(baseArray);
-        System.out.println(Arrays.toString(baseArray));
+        System.out.println("结果:" + Arrays.toString(baseArray));
 
     }
 
@@ -66,11 +66,6 @@ public class TestSort {
         return array;
     }
 
-    /**
-     * 有时间再写吧 心乱
-     * 
-     * @param array
-     */
     public static void quickSort(int[] array) {
         quickSort(array, 0, array.length - 1);
     }
@@ -86,34 +81,23 @@ public class TestSort {
             return;
         }
         int value = array[i];
-        // int tempIndex = i;
-        // if (value < array[(j - i) / 2]) {
-        // tempIndex = (j - i) / 2;
-        // }
-        // if (value < array[j]) {
-        // tempIndex = j;
-        // }
-        // if (i != tempIndex) {
-        // swap(array, i, tempIndex);
-        // }
-        int left = i + 1;
+        int left = i;
         int right = j;
-        while (left <= right) {
-            while (array[right] > value) {
+        while (left < right) {
+            while (array[right] > value && left < right) {
                 right--;
             }
-            while (array[left] < value) {
+            while (array[left] <= value && left < right) {
                 left++;
             }
-            if (left == right) {
-                swap(array, left, i);
-            } else {
+            if (left != right) {
                 swap(array, left, right);
             }
         }
-        System.out.println(Arrays.toString(array));
-        // quickSort(array, i, left);
-        // quickSort(array, left, j);
+        swap(array, i, right);
+
+        quickSort(array, i, left - 1);
+        quickSort(array, left + 1, j);
     }
 
     private static void swap(int[] array, int i, int j) {
