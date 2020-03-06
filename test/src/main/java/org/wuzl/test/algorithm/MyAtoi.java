@@ -28,7 +28,7 @@ public class MyAtoi {
         // System.out.println(obj.myAtoi("4193 with words"));
         // System.out.println(obj.myAtoi("-91283472332"));
         // System.out.println(obj.myAtoi(" 0000000000012345678"));
-        System.out.println(obj.myAtoi("2147483646"));
+        System.out.println(obj.myAtoi("-91283472332"));
 
     }
 
