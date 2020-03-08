@@ -2,6 +2,7 @@ package org.wuzl.test.algorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,14 +13,21 @@ import java.util.List;
  */
 public class TestSort {
     // private static final int[] baseArray = { 81, 94, 11, 96, 12, 35, 17, 95, 28, 58, 41, 75, 15 };
-    private static final int[] baseArray = { 81, 94, 11, 96, 12, 35, 17, 95, 28, 58 };
+    private static int[] baseArray = { 81, 94, 11, 96, 12, 35, 17, 95, 28, 58 };
 
     public static void main(String[] args) {
         System.out.println("输入:" + Arrays.toString(baseArray));
         // outArray(shellSort(baseArray.clone()));
-        // List<Integer> list = new ArrayList<>(Arrays.asList(baseArray));
+        List<Integer> list = Arrays.asList(81, 94, 11, 96, 12, 35, 17, 95, 28, 58, 41, 75, 15);
         quickSort(baseArray);
         System.out.println(Arrays.toString(baseArray));
+        int i = 16;
+        while (i-- > 0) {
+//            Collections.shuffle(list);
+//            Integer[] temp = (Integer[]) (list.toArray());
+//            quickSort(temp);
+//            System.out.println(temp);
+        }
 
     }
 
@@ -85,35 +93,23 @@ public class TestSort {
             }
             return;
         }
-        int value = array[i];
-        // int tempIndex = i;
-        // if (value < array[(j - i) / 2]) {
-        // tempIndex = (j - i) / 2;
-        // }
-        // if (value < array[j]) {
-        // tempIndex = j;
-        // }
-        // if (i != tempIndex) {
-        // swap(array, i, tempIndex);
-        // }
-        int left = i + 1;
+        int temp = array[i];
+        int left = i;
         int right = j;
-        while (left <= right) {
-            while (array[right] > value) {
+        while (left < right) {
+            while (left < right && array[right] > temp) {
                 right--;
             }
-            while (array[left] < value) {
+            while (left < right && array[left] <= temp) {
                 left++;
             }
-            if (left == right) {
-                swap(array, left, i);
-            } else {
+            if (right != left) {
                 swap(array, left, right);
             }
         }
-        System.out.println(Arrays.toString(array));
-        // quickSort(array, i, left);
-        // quickSort(array, left, j);
+        swap(array, left, i);
+        quickSort(array, i, left - 1);
+        quickSort(array, left + 1, j);
     }
 
     private static void swap(int[] array, int i, int j) {
