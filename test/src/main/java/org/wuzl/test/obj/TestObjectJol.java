@@ -12,6 +12,8 @@ public class TestObjectJol {
 
         TestObjectJol obj2 = new TestObjectJol();
         out(ClassLayout.parseInstance(obj2).toPrintable());
+        Integer num=12;
+        out(ClassLayout.parseInstance(num).toPrintable());
     }
 
     private static void out(String message) {

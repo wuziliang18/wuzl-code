@@ -21,14 +21,6 @@ public class TestSort {
         List<Integer> list = Arrays.asList(81, 94, 11, 96, 12, 35, 17, 95, 28, 58, 41, 75, 15);
         quickSort(baseArray);
         System.out.println(Arrays.toString(baseArray));
-        int i = 16;
-        while (i-- > 0) {
-//            Collections.shuffle(list);
-//            Integer[] temp = (Integer[]) (list.toArray());
-//            quickSort(temp);
-//            System.out.println(temp);
-        }
-
     }
 
     private static void outArray(int[] array) {
@@ -74,11 +66,6 @@ public class TestSort {
         return array;
     }
 
-    /**
-     * 有时间再写吧 心乱
-     * 
-     * @param array
-     */
     public static void quickSort(int[] array) {
         quickSort(array, 0, array.length - 1);
     }
@@ -93,21 +80,22 @@ public class TestSort {
             }
             return;
         }
-        int temp = array[i];
+        int value = array[i];
         int left = i;
         int right = j;
         while (left < right) {
-            while (left < right && array[right] > temp) {
+            while (array[right] > value && left < right) {
                 right--;
             }
-            while (left < right && array[left] <= temp) {
+            while (array[left] <= value && left < right) {
                 left++;
             }
-            if (right != left) {
+            if (left != right) {
                 swap(array, left, right);
             }
         }
-        swap(array, left, i);
+        swap(array, i, right);
+
         quickSort(array, i, left - 1);
         quickSort(array, left + 1, j);
     }
