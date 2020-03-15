@@ -19,8 +19,8 @@ public class TestCoin {
             smallChange(new int[] { 2 }, i);
             smallChange(new int[] { 1, 2 }, i);
         }
-//        smallChange(new int[] { 1, 2, 5 }, 9);
-//        smallChange(new int[] { 1, 2 }, 19);
+        // smallChange(new int[] { 1, 2, 5 }, 9);
+        // smallChange(new int[] { 1, 2 }, 19);
 
     }
 
