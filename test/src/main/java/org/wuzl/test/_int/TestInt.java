@@ -4,6 +4,13 @@ import java.util.concurrent.TimeUnit;
 
 public class TestInt {
 	public static void main(String[] args) throws InterruptedException {
+	    
+	     int COUNT_BITS = Integer.SIZE - 3;
+	     int CAPACITY   = (1 << COUNT_BITS) - 1;
+	     int RUNNING    = -1 << COUNT_BITS;
+	     System.out.println(COUNT_BITS);
+	     System.out.println(CAPACITY);
+	     System.out.println(RUNNING);
 		System.out.println(Integer.compare(1, -1));
 		System.out.println(Integer.compareUnsigned(1, -1));
 //		System.out.println(Integer.parseUnsignedInt("-22"));

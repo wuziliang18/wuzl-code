@@ -17,7 +17,34 @@ import java.util.Deque;
 public class MaxSlidingWindow {
     public static void main(String[] args) {
         MaxSlidingWindow obj = new MaxSlidingWindow();
-        System.out.println(Arrays.toString(obj.maxSlidingWindow(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 }, 3)));
+        // System.out.println(Arrays.toString(obj.maxSlidingWindow(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 }, 3)));
+        // System.out.println(obj.getMaxSum(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 }, 3));
+        System.out.println(obj.getMaxSum(new int[] { 1,2, 3, -6, 1 }, 3));
+    }
+
+    public int getMaxSum(int[] A, int n) {
+        if (A == null || A.length == 0) {
+            return 0;
+        }
+        if (A.length < n) {
+            int sum = 0;
+            for (int i = 0; i < A.length; i++) {
+                sum += A[i];
+            }
+            return sum;
+        }
+
+        int baseTemp = 0;
+        for (int i = 0; i < n; i++) {
+            baseTemp += A[i];
+        }
+        int max = baseTemp;
+        for (int i = n; i < A.length; i++) {
+            int temp = baseTemp - A[i - n] + A[i];
+            max = Math.max(max, temp);
+            baseTemp = temp;
+        }
+        return max;
     }
 
     public int[] maxSlidingWindow(int[] nums, int k) {

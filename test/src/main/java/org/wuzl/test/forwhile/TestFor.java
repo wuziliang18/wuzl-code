@@ -6,6 +6,23 @@ import java.util.Random;
 
 public class TestFor {
 	public static void main(String[] args) {
+	    
+	    skip:
+	    for(int i=0;i<100;i++) {
+	        for(int j=0;j<15;j++) {
+	            System.out.println("i:"+i+"j:"+j);
+	            if(i==2&&j==5) {
+	                System.out.println("contine");
+	                continue skip;
+	            }
+	            if(i==5&&j==10) {
+	                System.out.println("break");
+                    break skip;
+                }
+	        }
+	    }
+	    System.out.println(".>>>>>>");
+	    
 		int order=1;
 		for(int i=0;i<10;i++){
 			System.out.println(order++);
