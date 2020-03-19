@@ -21,13 +21,24 @@ public class ReverseLinkList {
         if (listNode == null || !listNode.hasNext()) {
             return listNode;
         }
-        ListNode<T> next = listNode;
-        while (listNode.hasNext()) {
-            ListNode<T> temp = next;
-            next = listNode.getNext();
-            listNode.setNext(next.getNext());
-            next.setNext(temp);
+        ListNode head = listNode;
+        while (listNode.next != null) {
+            ListNode temp = listNode.next;
+            listNode.next = temp.next;
+            temp.next = head;
+            head = temp;
         }
-        return next;
+        return head;
+        // if (listNode == null || !listNode.hasNext()) {
+        // return listNode;
+        // }
+        // ListNode<T> next = listNode;
+        // while (listNode.hasNext()) {
+        // ListNode<T> temp = next;
+        // next = listNode.getNext();
+        // listNode.setNext(next.getNext());
+        // next.setNext(temp);
+        // }
+        // return next;
     }
 }
