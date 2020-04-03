@@ -9,21 +9,28 @@ package org.wuzl.test.algorithm;
 public class ReverseWords {
     public static void main(String[] args) {
         ReverseWords obj = new ReverseWords();
-        System.out.println(obj.reverseWords(" "));
-        System.out.println(obj.reverseWords("the sky is blue"));
-        System.out.println(obj.reverseWords("  hello world!  "));
-        System.out.println(obj.reverseWords("a good example"));
-        System.out.println(obj.reverseWords("a good example b"));
+         System.out.println(obj.reverseWords("  hello world!  "));
+//         System.out.println(obj.reverseWords(" "));
+//        System.out.println(obj.reverseWords("the sky is blue"));
+        // System.out.println(obj.reverseWords(" hello world! "));
+        // System.out.println(obj.reverseWords("a good example"));
+        // System.out.println(obj.reverseWords("a good example b"));
     }
 
     public String reverseWords(String s) {
-        if (s == null || s.equals("")) {
-            return s;
+        if (s == null || s.trim().equals("")) {
+            return "";
         }
-        // TODO
-        // 考虑先循环计算需要多少 char 剔除多余空白
-        // 然后循环char数组
-        return s;
+        String[] array = s.trim().split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = array.length - 1; i >= 1; i--) {
+            if (array[i].equals("")) {
+                continue;
+            }
+            sb.append(array[i].trim()).append(" ");
+        }
+        sb.append(array[0].trim());
+        return sb.toString();
     }
 
     /**

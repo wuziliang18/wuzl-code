@@ -1,8 +1,5 @@
 package org.wuzl.test.algorithm;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 字符串转换整数 (atoi) 首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
  * 
@@ -23,75 +20,131 @@ public class MyAtoi {
     public static void main(String[] args) {
         MyAtoi obj = new MyAtoi();
         // System.out.println(obj.myAtoi("+1"));
-        // System.out.println(obj.myAtoi("42"));
-        // System.out.println(obj.myAtoi(" -42"));
-        // System.out.println(obj.myAtoi("4193 with words"));
+        System.out.println(obj.myAtoi("42"));
+        System.out.println(obj.myAtoi(" -42"));
+        System.out.println(obj.myAtoi("4193 with words"));
         // System.out.println(obj.myAtoi("-91283472332"));
         // System.out.println(obj.myAtoi(" 0000000000012345678"));
         System.out.println(obj.myAtoi("-91283472332"));
 
     }
 
-    private static char empty = ' ';
-    private static char addSign = '+';
-    private static char minusSign = '-';
-    private static int maxValue = Integer.MAX_VALUE / 10;
-    static Map<Character, Integer> map = new HashMap<>();
-    static {
-        for (char c = '0'; c <= '9'; c++) {
-            map.put(c, c - 48);
-        }
-    }
+    private final static int min = Integer.MIN_VALUE / 10;
+    private final static int min_2 = min * 10 - Integer.MIN_VALUE;
+    private final static int max = Integer.MAX_VALUE / 10;
+    private final static int max_2 = Integer.MAX_VALUE - max * 10;
 
     /**
-     * 他妈的太恶心人了不完了 各种极限数值
+     * 重写
      * 
      * @param str
      * @return
      */
     public int myAtoi(String str) {
-        if (str == null || str.equals("")) {
+        if (str == null || str.isEmpty()) {
             return 0;
         }
         int result = 0;
-        boolean hasAdd = false;
-        int sign = 0;
+        boolean hasNum = false;
+        short sign = 0;
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
-            Integer value = map.get(c);
-            if (value != null) {
-                if (result > maxValue * 10 - value) {
-                    return sign == -1 ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            if (c == ' ') {
+                if (hasNum || sign != 0) {
+                    return result;
                 }
-                result = result * 10 + value;
-                hasAdd = true;
                 continue;
             }
-            if (c == addSign) {
-                if (sign != 0) {
-                    break;
+            if (c == '+' || c == '-') {
+                if (hasNum || sign != 0) {
+                    return result;
                 }
+                if (c == '-') {
+                    sign = -1;
+                } else {
+                    sign = 1;
+                }
+                continue;
+            }
+            int num = c - 48;
+            if (num < 0 || num > 9) {
+                return result;
+            }
+            hasNum = true;
+            if (sign == 0) {
                 sign = 1;
-                continue;
             }
-            if (c == minusSign) {
-                if (sign != 0) {
-                    break;
-                }
-                sign = -1;
-                continue;
+            if (result > max || (result == max && num >= max_2)) {
+                return Integer.MAX_VALUE;
             }
-            if (c == empty) {
-                if (hasAdd) {
-                    break;
-                }
-                continue;
+            if (result < min || (result == min && num >= min_2)) {
+                return Integer.MIN_VALUE;
             }
-            break;
+            num = sign * num;
+            result = 10 * result + num;
         }
-        if (sign == 0) {
-            sign = 1;
-        }
-        return sign * result;
+        return result;
     }
+    // private static char empty = ' ';
+    // private static char addSign = '+';
+    // private static char minusSign = '-';
+    // private static int maxValue = Integer.MAX_VALUE / 10;
+    // static Map<Character, Integer> map = new HashMap<>();
+    // static {
+    // for (char c = '0'; c <= '9'; c++) {
+    // map.put(c, c - 48);
+    // }
+    // }
+    //
+    // /**
+    // * 他妈的太恶心人了不完了 各种极限数值
+    // *
+    // * @param str
+    // * @return
+    // */
+    // public int myAtoi(String str) {
+    // if (str == null || str.equals("")) {
+    // return 0;
+    // }
+    // int result = 0;
+    // boolean hasAdd = false;
+    // int sign = 0;
+    // for (int i = 0; i < str.length(); i++) {
+    // char c = str.charAt(i);
+    // Integer value = map.get(c);
+    // if (value != null) {
+    // if (result > maxValue * 10 - value) {
+    // return sign == -1 ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+    // }
+    // result = result * 10 + value;
+    // hasAdd = true;
+    // continue;
+    // }
+    // if (c == addSign) {
+    // if (sign != 0) {
+    // break;
+    // }
+    // sign = 1;
+    // continue;
+    // }
+    // if (c == minusSign) {
+    // if (sign != 0) {
+    // break;
+    // }
+    // sign = -1;
+    // continue;
+    // }
+    // if (c == empty) {
+    // if (hasAdd) {
+    // break;
+    // }
+    // continue;
+    // }
+    // break;
+    // }
+    // if (sign == 0) {
+    // sign = 1;
+    // }
+    // return sign * result;
+    // }
 }
