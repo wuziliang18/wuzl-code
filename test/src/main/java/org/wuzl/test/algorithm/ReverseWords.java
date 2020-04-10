@@ -9,15 +9,40 @@ package org.wuzl.test.algorithm;
 public class ReverseWords {
     public static void main(String[] args) {
         ReverseWords obj = new ReverseWords();
-         System.out.println(obj.reverseWords("  hello world!  "));
-//         System.out.println(obj.reverseWords(" "));
-//        System.out.println(obj.reverseWords("the sky is blue"));
+        System.out.println(obj.reverseWords("  hello world!  "));
+        // System.out.println(obj.reverseWords(" "));
+        // System.out.println(obj.reverseWords("the sky is blue"));
         // System.out.println(obj.reverseWords(" hello world! "));
         // System.out.println(obj.reverseWords("a good example"));
         // System.out.println(obj.reverseWords("a good example b"));
     }
 
+    /**
+     * 第二次写
+     * 
+     * @param s
+     * @return
+     */
     public String reverseWords(String s) {
+        if (s == null || s.isEmpty()) {
+            return s;
+        }
+        String[] array = s.trim().split(" ");
+        if (array.length == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(array[array.length - 1].trim());
+        for (int i = array.length - 2; i >= 0; i--) {
+            String word = array[i].trim();
+            if (!word.isEmpty()) {
+                sb.append(" ").append(word);
+            }
+        }
+        return sb.toString();
+    }
+
+    public String reverseWordsV3(String s) {
         if (s == null || s.trim().equals("")) {
             return "";
         }
