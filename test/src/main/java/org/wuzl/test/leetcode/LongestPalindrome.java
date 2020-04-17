@@ -16,34 +16,59 @@ import java.util.List;
  *
  */
 public class LongestPalindrome {
-	public static void main(String[] args) {
-		List<String> inputs = Arrays.asList("babad", "bab", "cbbd", "aaaabccba");
-		PrintUtil.print(inputs, input -> solution(input));
-	}
+    public static void main(String[] args) {
+        List<String> inputs = Arrays.asList("babad", "bab", "cbbd", "aaaabccba");
+        PrintUtil.print(inputs, input -> solution(input));
+    }
+    /**
+     * TODO error
+     * @param input
+     * @return
+     */
+    public static String solution(String input) {
+        if (input == null || input.isEmpty()) {
+            return "";
+        }
+        String temp = null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            for (int j = input.length() - 1; j >= 0; j--) {
+                if (input.charAt(i) == input.charAt(j)) {
+                    sb.append(input.charAt(i));
+                } else {
+                    if (sb.length() >= 3) {
+                        temp = sb.toString();
+                    }
+                    sb = new StringBuilder();
+                }
+            }
+        }
+        return temp;
+    }
 
-	public static String solution(String input) {
-		if (input == null || input.equals("")) {
-			return "";
-		}
-		int start = 0;
-		int end = 0;
-		for (int i = 0; i < input.length(); i++) {
-			int leftLenght = expandAroundCenter(input, i, i);
-			int rightLenght = expandAroundCenter(input, i, i + 1);
-			int length = Math.max(leftLenght, rightLenght);
-			if (length > (end - start)) {
-				start = i - (length - 1) / 2;
-				end = i + length / 2;
-			}
-		}
-		return input.substring(start, end + 1);
-	}
+    public static String solutionV1(String input) {
+        if (input == null || input.equals("")) {
+            return "";
+        }
+        int start = 0;
+        int end = 0;
+        for (int i = 0; i < input.length(); i++) {
+            int leftLenght = expandAroundCenter(input, i, i);
+            int rightLenght = expandAroundCenter(input, i, i + 1);
+            int length = Math.max(leftLenght, rightLenght);
+            if (length > (end - start)) {
+                start = i - (length - 1) / 2;
+                end = i + length / 2;
+            }
+        }
+        return input.substring(start, end + 1);
+    }
 
-	private static int expandAroundCenter(String s, int left, int right) {
-		while (left >= 0 && right <= s.length() - 1 && s.charAt(left) == s.charAt(right)) {
-			left--;
-			right++;
-		}
-		return right - left - 1;
-	}
+    private static int expandAroundCenter(String s, int left, int right) {
+        while (left >= 0 && right <= s.length() - 1 && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
 }

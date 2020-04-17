@@ -1,7 +1,9 @@
 package org.wuzl.test.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,10 +23,41 @@ import java.util.Set;
  */
 public class LengthOfLongestSubstring {
     public static void main(String[] args) {
-        // List<String> list = Arrays.asList("dvdf","abcabcbb", "bbbbb", "pwwkew", "pwwkewwabcdfe");
-        // // PrintUtil.print(list, input -> lengthOfLongestSubstring(input));
+        // List<String> list = Arrays.asList("dvdf", "abcabcbb", "bbbbb", "pwwkew", "pwwkewwabcdfe");
+        // PrintUtil.print(list, input -> lengthOfLongestSubstring(input));
         // PrintUtil.print(list, input -> solution(input));
-        System.out.println(lengthOfLongestSubstring("bpfbhmipx"));
+        // System.out.println(lengthOfLongestSubstring("bpfbhmipx"));
+        System.out.println(lengthOfLongestSubstringV2("pwwkew"));
+    }
+
+    /**
+     * 第二次写
+     * 
+     * @param input
+     * @return
+     */
+    public static int lengthOfLongestSubstringV2(String input) {
+        if (input == null || input.length() == 0) {
+            return 0;
+        }
+        int result = 0;
+        int start = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            Integer index = map.get(c);
+            if (index == null) {
+                map.put(c, i);
+                continue;
+            }
+            result = Math.max(result, map.size());
+            for (; start <= index; start++) {
+                map.remove(input.charAt(start));
+            }
+            map.put(c, i);
+        }
+        result = Math.max(result, map.size());
+        return result;
     }
 
     public static int lengthOfLongestSubstring(String input) {
