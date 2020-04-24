@@ -15,58 +15,54 @@ import java.util.Arrays;
 public class ReversePairs {
     public static void main(String[] args) {
         ReversePairs obj = new ReversePairs();
-        System.out.println(obj.reversePairs(new int[] { 7, 5, 6, 4 }));
-        System.out.println(obj.reversePairs(new int[] { 1, 3, 5, 6, 4, 9, 2 }));
-        System.out.println(obj.reversePairs(new int[] { 1, 6, 4, 9, 3, 5 }));
+        // System.out.println(obj.reversePairs(new int[] { 7, 5, 6, 4 }));
+        // System.out.println(obj.reversePairs(new int[] { 1, 3, 5, 6, 4, 9, 2 }));
+        // System.out.println(obj.reversePairs(new int[] { 1, 6, 4, 9, 3, 5 }));
+        System.out.println(obj.reversePairs(new int[] { 1, 3, 2, 3, 1 }));
 
     }
 
-    private int count = 0;
-
-    // 没做出来太恶心了
     public int reversePairs(int[] nums) {
         if (nums == null || nums.length <= 1) {
             return 0;
         }
-        mergeSort(nums, 0, nums.length - 1);
-        return count;
+        return mergeSort(nums, 0, nums.length - 1);
     }
 
-    private void mergeSort(int[] nums, int left, int right) {
-        if (left == right) {
-            return;
+    private int mergeSort(int[] nums, int start, int end) {
+        if (start >= end) {
+            return 0;
         }
-        if (left == right - 1) {
-            if (nums[left] > nums[right]) {
-                int temp = nums[left];
-                nums[left] = nums[right];
-                nums[right] = temp;
-            }
-            return;
-        }
-        int mid = (right + left) / 2;
-        mergeSort(nums, left, mid);
-        mergeSort(nums, mid + 1, right);
-        int leftTemp = left;
-        int rightTemp = mid + 1;
-        int[] tempArray = new int[right - left + 1];
+        int mid = (end + start) >> 1;
+        return mergeSort(nums, start, mid) + mergeSort(nums, mid + 1, end) + merge(nums, start, end, mid);
+    }
+
+    private int merge(int[] nums, int start, int end, int mid) {
+        int count = 0;
+        int left = start;
+        int ritght = mid + 1;
         int index = 0;
-        while (leftTemp <= mid && rightTemp <= right) {
-            if (nums[leftTemp] > nums[rightTemp]) {
-                tempArray[index++] = nums[rightTemp++];
+        int[] array = new int[end + 1 - start];
+        while (left <= mid && ritght <= end) {
+            if (nums[left] > nums[ritght]) {
+                count += mid - left + 1;
+            }
+            if (nums[left] <= nums[ritght]) {
+                array[index++] = nums[left++];
             } else {
-                tempArray[index++] = nums[leftTemp++];
+                array[index++] = nums[ritght++];
             }
         }
-        while (leftTemp <= mid) {
-            tempArray[index++] = nums[leftTemp++];
+        while (left <= mid) {
+            array[index++] = nums[left++];
         }
-        while (rightTemp <= right) {
-            tempArray[index++] = nums[rightTemp++];
+        while (ritght <= end) {
+            array[index++] = nums[ritght++];
         }
-        for (int i = 0; i < tempArray.length; i++) {
-            nums[left + i] = tempArray[i];
+        for (int i = 0; i < array.length; i++) {
+            nums[start + i] = array[i];
         }
+        return count;
     }
 
     /**
