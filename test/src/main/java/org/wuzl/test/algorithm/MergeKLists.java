@@ -15,6 +15,44 @@ public class MergeKLists {
         if (lists == null || lists.length == 0) {
             return null;
         }
+        return merge(lists, 0, lists.length - 1);
+    }
+
+    private static ListNode<Integer> merge(ListNode<Integer>[] lists, int left, int right) {
+        if (left == right) {
+            return lists[left];
+        }
+        int mid = (left + right) / 2;
+        return merge(merge(lists, left, mid), merge(lists, mid + 1, right));
+
+    }
+
+    private static ListNode<Integer> merge(ListNode<Integer> first, ListNode<Integer> sec) {
+        ListNode<Integer> head = new ListNode<Integer>();
+        ListNode<Integer> temp = head;
+        while (first != null && sec != null) {
+            if (first.val <= sec.val) {
+                temp.next = first;
+                first = first.next;
+            } else {
+                temp.next = sec;
+                sec = sec.next;
+            }
+            temp = temp.next;
+        }
+        if (first != null) {
+            temp.setNext(first);
+        }
+        if (sec != null) {
+            temp.setNext(sec);
+        }
+        return head.next;
+    }
+
+    public static ListNode<Integer> mergeKListsV1(ListNode<Integer>[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
         if (lists.length == 1) {
             return lists[0];
         }
