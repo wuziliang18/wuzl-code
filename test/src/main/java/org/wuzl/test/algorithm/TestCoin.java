@@ -10,6 +10,7 @@ import java.util.Arrays;
  */
 public class TestCoin {
     public static void main(String[] args) {
+        System.out.println(1000*60*60*24*10);
         // 默认从小到大 考虑加入排序
         for (int i = 1; i < 20; i++) {
             smallChange(new int[] { 1, 2, 3, 5 }, i);
