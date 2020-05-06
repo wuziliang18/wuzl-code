@@ -16,7 +16,30 @@ public class MaxSubArray {
         System.out.println(obj.maxSubArray(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }));
     }
 
+    /**
+     * 第二次做
+     * 
+     * @param nums
+     * @return
+     */
     public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int max = Integer.MIN_VALUE;
+        int temp = 0;
+        for (int i = 0; i < nums.length; i++) {
+            temp += nums[i];
+            max = Math.max(temp, max);
+            if (temp < 0) {
+                temp = 0;
+            }
+        }
+
+        return max;
+    }
+
+    public int maxSubArrayV1(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }

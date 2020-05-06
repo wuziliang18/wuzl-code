@@ -23,11 +23,83 @@ import java.util.Set;
  */
 public class LengthOfLongestSubstring {
     public static void main(String[] args) {
-        // List<String> list = Arrays.asList("dvdf", "abcabcbb", "bbbbb", "pwwkew", "pwwkewwabcdfe");
-        // PrintUtil.print(list, input -> lengthOfLongestSubstring(input));
-        // PrintUtil.print(list, input -> solution(input));
-        // System.out.println(lengthOfLongestSubstring("bpfbhmipx"));
-        System.out.println(lengthOfLongestSubstringV2("pwwkew"));
+//        List<String> list = Arrays.asList("dvdf", "abcabcbb", "bbbbb", "pwwkew", "pwwkewwabcdfe");
+//        PrintUtil.print(list, input -> lengthOfLongestSubstring(input));
+//        PrintUtil.print(list, input -> solution(input));
+        System.out.println(lengthOfLongestSubstringV5("bpfbhmipx"));
+        System.out.println(lengthOfLongestSubstringV5("pwwkew"));
+        System.out.println(lengthOfLongestSubstringV5("bbbbb"));
+        System.out.println(lengthOfLongestSubstringV5("abc"));
+    }
+
+    /**
+     * 升级版本
+     * 
+     * @param input
+     * @return
+     */
+    public static int lengthOfLongestSubstringV5(String input) {
+        if (input == null) {
+            return 0;
+        }
+        if (input.length() <= 1) {
+            return input.length();
+        }
+        int max = 0;
+        int preIndex = 0;
+        Map<Character, Integer> cache = new HashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            Integer index = cache.get(c);
+            if (index != null) {
+                preIndex = Math.max(preIndex, index+1);
+            }
+            cache.put(c, i);
+            max = Math.max(max, i  - preIndex+1);
+        }
+        return max;
+    }
+
+    /**
+     * 第三次写
+     * 
+     * @param input
+     * @return
+     */
+    public static int lengthOfLongestSubstringV4(String input) {
+        if (input == null) {
+            return 0;
+        }
+        if (input.length() <= 1) {
+            return input.length();
+        }
+        int max = 0;
+        int preIndex = 0;
+        Map<Character, Integer> cache = new HashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            Integer index = cache.get(c);
+            if (index == null) {
+                cache.put(c, i);
+                continue;
+            }
+            max = Math.max(max, cache.size());
+            if (i - index > cache.size() / 2) {
+                for (int left = preIndex; left <= index; left++) {
+                    cache.remove(input.charAt(left));
+                }
+
+            } else {
+                cache.clear();
+                for (int left = index + 1; left < i; left++) {
+                    cache.put(input.charAt(left), left);
+                }
+            }
+            preIndex = index + 1;
+            cache.put(c, i);
+        }
+        max = Math.max(max, cache.size());
+        return max;
     }
 
     /**
@@ -36,7 +108,7 @@ public class LengthOfLongestSubstring {
      * @param input
      * @return
      */
-    public static int lengthOfLongestSubstringV2(String input) {
+    public static int lengthOfLongestSubstringV3(String input) {
         if (input == null || input.length() == 0) {
             return 0;
         }
