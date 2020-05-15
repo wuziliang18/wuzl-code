@@ -2,6 +2,7 @@ package org.wuzl.test.algorithm;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +17,38 @@ import org.wuzl.test.algorithm.support.TreeNode;
  *
  */
 public class LevelOrder {
-    public int[] levelOrder(TreeNode root) {
+    /**
+     * 第二次写
+     * 
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        List<List<Integer>> result = new LinkedList<List<Integer>>();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> rows = new LinkedList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                rows.add(node.val);
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            result.add(rows);
+        }
+        return result;
+    }
+
+    public int[] levelOrderV1(TreeNode root) {
         if (root == null) {
             return new int[0];
         }

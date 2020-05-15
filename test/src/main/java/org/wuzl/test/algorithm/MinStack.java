@@ -8,36 +8,42 @@ public class MinStack {
         minStack.push(-2);
         minStack.push(0);
         minStack.push(-3);
-        minStack.min(); // 返回 -3.
+        System.out.println(minStack.min());
+        ; // 返回 -3.
         minStack.pop();
-        minStack.top(); // 返回 0.
+        System.out.println(minStack.top());
+        ; // 返回 0.
         System.out.println(minStack.min());
         ; // 返回 -2.
+        minStack.pop();
+        minStack.pop();
     }
 
     private Stack<Integer> stack = new Stack<Integer>();
-    private Stack<Integer> temp = new Stack<Integer>();
+    private int min = Integer.MAX_VALUE;
 
     public MinStack() {
 
     }
 
     public void push(int x) {
-        while (!stack.isEmpty()) {
-            if (stack.peek() < x) {
-                temp.push(stack.pop());
-                continue;
-            }
-            break;
-        }
+        min = Math.min(x, min);
+        stack.push(min);
         stack.push(x);
-        while (!temp.isEmpty()) {
-            stack.push(temp.pop());
-        }
     }
 
     public void pop() {
         stack.pop();
+        int temp = stack.pop();
+        if (temp == min) {
+            if (stack.isEmpty()) {
+                min = Integer.MAX_VALUE;
+                return;
+            }
+            int pre = stack.pop();
+            min = stack.peek();
+            stack.push(pre);
+        }
     }
 
     public int top() {
@@ -45,6 +51,7 @@ public class MinStack {
     }
 
     public int min() {
-        return stack.peek();
+
+        return min;
     }
 }
