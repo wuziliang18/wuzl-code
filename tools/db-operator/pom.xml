@@ -12,7 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<log4j_version>2.0-rc1</log4j_version>
+		<log4j_version>2.13.3</log4j_version>
 		<spring_version>3.1.2.RELEASE</spring_version>
 		<jdom2_version>2.0.5</jdom2_version>
 		<jackson_version>1.9.8</jackson_version>
