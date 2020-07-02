@@ -19,7 +19,7 @@
 		<mybatis_version>3.2.2</mybatis_version>
 		<aspectjweaver_version>1.6.8</aspectjweaver_version>
 		<dbcp_version>1.4</dbcp_version>
-		<mysql_version>5.1.30</mysql_version>
+		<mysql_version>8.0.16</mysql_version>
 	</properties>
 	<dependencies>
 		<dependency>
