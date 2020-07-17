@@ -1,13 +1,22 @@
 package org.wuzl.test.design_mode.filter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.wuzl.test.design_mode.IWork;
 import org.wuzl.test.design_mode.Work;
 
+import com.alibaba.fastjson.JSONObject;
+
 public class TestMain {
 	public static void main(String[] args) {
+	    Map<String, Object> map = new HashMap<>();
+        map.put("oid", 1058667);
+        map.put("code", "10002063");
+        map.put("region1Id", 1058667);
+        System.out.println(JSONObject.toJSON(map));
 		IWork work=new Work();
 		work.begin();
 		work.work("陪睡觉");//直接运行
