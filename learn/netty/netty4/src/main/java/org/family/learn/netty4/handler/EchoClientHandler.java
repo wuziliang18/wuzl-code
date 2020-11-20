@@ -9,7 +9,7 @@ import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
 
 public class EchoClientHandler extends  SimpleChannelInboundHandler<ByteBuf> {
-
+    
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg)
 			throws Exception {
@@ -23,7 +23,7 @@ public class EchoClientHandler extends  SimpleChannelInboundHandler<ByteBuf> {
 		System.out.println("连接上了服务端");
 		System.out.println("连接上的服务端通道："+ctx.channel());
 		System.out.println(ctx.channel());
-		ctx.write(Unpooled.copiedBuffer("Netty rocks!",CharsetUtil.UTF_8));
+		ctx.write(Unpooled.copiedBuffer("Netty rocks !",CharsetUtil.UTF_8));
 		ctx.flush();
 	}
 	@Override  
