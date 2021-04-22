@@ -16,7 +16,7 @@
 		<spring_version>3.1.2.RELEASE</spring_version>
 		<jdom2_version>2.0.5</jdom2_version>
 		<jackson_version>1.9.8</jackson_version>
-		<mybatis_version>3.2.2</mybatis_version>
+		<mybatis_version>3.5.6</mybatis_version>
 		<aspectjweaver_version>1.6.8</aspectjweaver_version>
 		<dbcp_version>1.4</dbcp_version>
 		<mysql_version>5.1.30</mysql_version>
