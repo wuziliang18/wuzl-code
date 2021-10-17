@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestInt {
     public static void main(String[] args) throws InterruptedException {
+        System.out.println(Integer.MAX_VALUE);
         System.out.println(1000l*60*60*10);
         long l=123132l;
         int iii=(int)l;

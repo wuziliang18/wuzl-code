@@ -6,6 +6,7 @@ import java.util.List;
 
 public class TestString {
 	public static void main(String[] args) {
+	    System.out.println("А".equals("A"));
 	    String subject1 = "HCL-176327a-444";
         int index = subject1.lastIndexOf("-");
         String subjectCommonCode2 = subject1.substring(0, index);
