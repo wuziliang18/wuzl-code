@@ -12,7 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring_version>3.1.2.RELEASE</spring_version>
+		<spring_version>4.3.21.RELEASE</spring_version>
 		<cglib_version>2.2</cglib_version>
 		<asm_version>2.2.3</asm_version>
 		<aspectjweaver_version>1.6.8</aspectjweaver_version>
