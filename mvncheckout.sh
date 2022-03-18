@@ -9,3 +9,5 @@ echo '开始处理'$path
 cd $path
 git checkout $2
 git pull
+
+
