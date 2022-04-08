@@ -7,7 +7,7 @@ import java.util.List;
 import org.wuzl.test.io.FileUtil;
 
 public class DeleteGitAndTarget {
-    private final String path = "D:\\wuzlWorkSpace\\jddlink-api-service";
+    private final String path = "D:\\workspace\\归档";
     int count = 0;
     List<String> paths = new ArrayList<>();
 
