@@ -16,7 +16,7 @@
 		<jstl_version>1.2</jstl_version>
 		<servlet_version>2.4</servlet_version>
 		<jsp_version>2.0</jsp_version>
-		<fastjson_version>1.1.39</fastjson_version>
+		<fastjson_version>1.2.83</fastjson_version>
 		<xstream_version>1.4.7</xstream_version>
 		<jaxen_version>1.1.6</jaxen_version>
 
