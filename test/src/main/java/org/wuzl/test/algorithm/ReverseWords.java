@@ -15,6 +15,70 @@ public class ReverseWords {
         // System.out.println(obj.reverseWords(" hello world! "));
         // System.out.println(obj.reverseWords("a good example"));
         // System.out.println(obj.reverseWords("a good example b"));
+        System.out.println(obj.reverseWordsNewV2("Let's take LeetCode contest"));
+    }
+
+    /**
+     * 反转字符串中的单词 III 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+     * 
+     * @param s
+     * @return
+     */
+    public String reverseWordsNewV2(String s) {
+        if (s == null || s.trim().equals("")) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        int start = -1;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == ' ') {
+                if (start == -1) {
+                    continue;
+                }
+                for (int end = i - 1; end >= start; end--) {
+                    sb.append(s.charAt(end));
+                }
+                sb.append(" ");
+                start = -1;
+            } else {
+                if (start == -1) {
+                    start = i;
+                }
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        if (start != -1) {
+            sb.append(" ");
+            for (int end = s.length() - 1; end >= start; end--) {
+                sb.append(s.charAt(end));
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 反转字符串中的单词 III 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+     * 
+     * @param s
+     * @return
+     */
+    public String reverseWordsNew(String s) {
+        if (s == null || s.trim().equals("")) {
+            return "";
+        }
+        String[] array = s.trim().split("[ ]+");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            String temp = array[i];
+            for (int j = temp.length() - 1; j >= 0; j--) {
+                sb.append(temp.charAt(j));
+            }
+            sb.append(" ");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 
     /**

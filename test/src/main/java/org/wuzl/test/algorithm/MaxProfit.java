@@ -3,8 +3,32 @@ package org.wuzl.test.algorithm;
 public class MaxProfit {
     public static void main(String[] args) {
         MaxProfit obj = new MaxProfit();
-        System.out.println(obj.maxProfit(new int[] { 7, 1, 5, 3, 6, 4 }));
-        System.out.println(obj.maxProfit(new int[] { 7, 6, 4, 3, 1 }));
+        System.out.println(obj.maxProfitV2(new int[] { 1,2}));
+
+//        System.out.println(obj.maxProfitV2(new int[] { 7, 1, 5, 3, 6, 4 }));
+//        System.out.println(obj.maxProfitV2(new int[] { 7, 6, 4, 3, 1 }));
+    }
+
+    public int maxProfitV2(int[] prices) {
+        if (prices == null || prices.length <= 1) {
+            return 0;
+        }
+        int value = 0;
+        int pre = prices[0];
+        int temp = 0;
+        for (int i = 1; i < prices.length; i++) {
+            int now = prices[i];
+            if (now - pre > temp) {
+                temp = now - pre;
+                continue;
+            }
+            pre = now;
+            value += temp;
+            temp = 0;
+            continue;
+        }
+        value += temp;
+        return value;
     }
 
     public int maxProfit(int[] prices) {

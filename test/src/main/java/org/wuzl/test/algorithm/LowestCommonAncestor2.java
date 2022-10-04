@@ -13,7 +13,22 @@ import org.wuzl.test.algorithm.support.TreeNode;
  *
  */
 public class LowestCommonAncestor2 {
+
+    /**
+     * 第二回写 还不会
+     * 
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        
+
+        return null;
+    }
+
+    public TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
         }

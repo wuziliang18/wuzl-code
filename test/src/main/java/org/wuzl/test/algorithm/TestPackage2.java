@@ -9,8 +9,10 @@ import java.util.Arrays;
  *
  */
 public class TestPackage2 {
-    private static int[] items = { 2, 2, 4, 6, 3 }; // 物品的重量
-    private static int[] values = { 3, 4, 8, 9, 6 }; // 物品的价值
+    // private static int[] items = { 2, 2, 4, 6, 3 }; // 物品的重量
+    // private static int[] values = { 3, 4, 8, 9, 6 }; // 物品的价值
+    private static int[] items = { 2, 4, 6, 3, 2 }; // 物品的重量
+    private static int[] values = { 3, 8, 9, 6, 4 }; // 物品的价值
     private static int maxWeight = 9;
 
     public static void main(String[] args) {
@@ -36,7 +38,8 @@ public class TestPackage2 {
         }
         return maxValue;
     }
-    //error
+
+    // error
     public static int getMaxValueV1() {
         int size = items.length;
         int maxValueArray[] = new int[maxWeight + 1];
