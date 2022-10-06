@@ -22,7 +22,7 @@ public class InExpressionFunction extends ExpressionFunctionAdapter {
         for (ExpressionNode node : nodes) {
             sb.append(node.getValue()).append(", ");
         }
-        sb.delete(sb.length() - 2, sb.length());
+        sb.delete(sb.length() - 3, sb.length());
         sb.append(") ");
         return sb.toString();
     }

@@ -10,10 +10,12 @@ import org.wuzl.test.expressionv2.ExpressionNodeType;
 import org.wuzl.test.expressionv2.function.impl.AddDateExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.AddTimeExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.BetweenExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.ConcatExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.CurrentDateExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.CurrentDateTimeExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.CurrentTimeExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.DateDiffExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.DateExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.DateFormatExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.IfNullExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.InExpressionFunction;
@@ -23,10 +25,19 @@ import org.wuzl.test.expressionv2.function.impl.NotBetweenExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.NotInExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.NotLikeExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.NotRegexpExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.NumerFormatExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.PowExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.RegexpExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.RightLikeExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.StrCmpExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.StrLengthExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.StrLowerCaseExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.StrReplaceExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.StrReverseExpressionFunction;
 import org.wuzl.test.expressionv2.function.impl.StrToDateExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.StrTrimExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.StrUpperCaseExpressionFunction;
+import org.wuzl.test.expressionv2.function.impl.SubstrExpressionFunction;
 
 /**
  * 表达式函数工厂
@@ -65,8 +76,6 @@ public class ExpressionFunctionFactory {
 
         register(new IfNullExpressionFunction());
 
-        register(new PowExpressionFunction());
-
         register(new InExpressionFunction());
         register(new NotInExpressionFunction());
         register(new BetweenExpressionFunction());
@@ -83,12 +92,25 @@ public class ExpressionFunctionFactory {
         register(new CurrentDateExpressionFunction());
         register(new CurrentTimeExpressionFunction());
         register(new CurrentDateTimeExpressionFunction());
-
+        register(new DateExpressionFunction());
         register(new AddDateExpressionFunction());
         register(new AddTimeExpressionFunction());
         register(new DateDiffExpressionFunction());
         register(new DateFormatExpressionFunction());
         register(new StrToDateExpressionFunction());
+
+        register(new NumerFormatExpressionFunction());
+        register(new PowExpressionFunction());
+
+        register(new ConcatExpressionFunction());
+        register(new SubstrExpressionFunction());
+        register(new StrLengthExpressionFunction());
+        register(new StrLowerCaseExpressionFunction());
+        register(new StrUpperCaseExpressionFunction());
+        register(new StrTrimExpressionFunction());
+        register(new StrReplaceExpressionFunction());
+        register(new StrReverseExpressionFunction());
+        register(new StrCmpExpressionFunction());
 
     }
 
@@ -100,6 +122,7 @@ public class ExpressionFunctionFactory {
         if (functionName == null || functionName.equals("")) {
             throw new ExpressionException("函数名称不可以为空");
         }
+        functionName = functionName.toUpperCase();
         ExpressionFunction old = CACHE.putIfAbsent(functionName, function);
         if (old != null && old != function) {
             throw new ExpressionException("函数名称:" + functionName + "已经存在");
@@ -107,7 +130,7 @@ public class ExpressionFunctionFactory {
     }
 
     public static ExpressionFunction getByFunctionName(String functionName) {
-        return CACHE.get(functionName);
+        return CACHE.get(functionName.toUpperCase());
     }
 
     public static void main(String[] args) {

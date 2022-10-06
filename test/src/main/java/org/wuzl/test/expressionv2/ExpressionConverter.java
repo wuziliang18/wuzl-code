@@ -66,6 +66,10 @@ public class ExpressionConverter {
                 variables.add(node.getValue());
                 this.processTextValue(stack, sb, node.getValue());
                 break;
+
+            // case STRING:
+            // // 字符串 需要单独处理 mysql 不支持+
+            // break;
             default:
                 ExpressionNodeCategory category = node.getType().getExpressionNodeCategory();
                 switch (category) {
@@ -74,7 +78,7 @@ public class ExpressionConverter {
                     // 判断栈是否为空
                     // 空直接放到结果中
                     // 不空生成文本节点放入栈
-                    text = this.processOperator(node, nextNode);
+                    text = this.processOperator(stack, node, nextNode);
                     this.processTextValue(stack, sb, text);
                     break;
                 case VALUE:
@@ -101,7 +105,7 @@ public class ExpressionConverter {
         return sb.toString();
     }
 
-    private String processOperator(ExpressionNode node, ExpressionNode nextNode) {
+    private String processOperator(Stack<ExpressionNode> stack, ExpressionNode node, ExpressionNode nextNode) {
         ExpressionNodeType nodeType = node.getType();
         if (nodeType != ExpressionNodeType.EQ && nodeType != ExpressionNodeType.NE) {
             return nodeType.getType();
